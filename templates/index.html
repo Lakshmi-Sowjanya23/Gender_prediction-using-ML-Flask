@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gender Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Gender Detection System</h1>
+        <p class="subtitle">Predict gender from a given name using Machine Learning</p>
+
+        <form method="POST">
+            <input type="text"
+                   name="name"
+                   placeholder="Enter a Name"
+                   required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>{{ prediction }}</h2>
+            <p>Confidence Score: {{ confidence }}%</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
