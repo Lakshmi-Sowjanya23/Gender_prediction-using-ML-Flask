@@ -2,7 +2,7 @@ import pandas as pd
 import pickle
 
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
 
 # Load dataset
 data = pd.read_csv("gender_dataset.csv")
@@ -11,16 +11,20 @@ data = pd.read_csv("gender_dataset.csv")
 X = data["Name"]
 y = data["Gender"]
 
-# Convert names to numerical features
-vectorizer = CountVectorizer(analyzer='char')
+# Convert names into character patterns
+vectorizer = CountVectorizer(
+    analyzer='char',
+    ngram_range=(2, 3)
+)
 
 X_vec = vectorizer.fit_transform(X)
 
 # Train model
-model = MultinomialNB()
+model = LogisticRegression(max_iter=1000)
+
 model.fit(X_vec, y)
 
-# Save model
+# Save model and vectorizer
 pickle.dump(model, open("model.pkl", "wb"))
 pickle.dump(vectorizer, open("vectorizer.pkl", "wb"))
 
