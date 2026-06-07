@@ -1,5 +1,7 @@
 # Gender Detection Using Machine Learning and Flask
 
+![Output Screenshot](output.png)
+
 ## Project Overview
 
 This project predicts the gender of a person based on their name using Machine Learning. The user enters a name through a Flask web application, and the trained classification model predicts whether the name is Male or Female along with a confidence score.
